@@ -2,8 +2,6 @@
 
 A fully functional, beautifully designed **Salary & Expense Tracker** built with **Vanilla JavaScript**, **HTML5**, and **CSS3** — no frameworks, no React, just raw web fundamentals.
 
-> Built as part of the **Prodesk IT Internship — Week 2 Mission**: *"Cash-Flow"*
-
 ---
 
 ## 🚀 Live Features
