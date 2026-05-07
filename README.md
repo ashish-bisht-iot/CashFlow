@@ -77,14 +77,6 @@ cd cashflow-tracker
 
 ---
 
-## 📸 Screenshots
-
-| Light Mode | Dark Mode |
-|---|---|
-| White & sky-blue theme | Midnight blue dark theme |
-
----
-
 ## 🧠 Key JavaScript Concepts Used
 
 - **DOM Manipulation** — `getElementById`, `innerHTML`, `classList`, `addEventListener`
@@ -95,39 +87,3 @@ cd cashflow-tracker
 - **Chart.js** — via CDN, destroyed and re-created on each update
 - **jsPDF** — client-side PDF generation with custom layout
 
----
-
-## 🪲 Common Issues & Fixes
-
-**Q: Math gives wrong results (e.g. 10 + 10 = 1010)**
-> All input values are wrapped with `Number()` before arithmetic. HTML inputs return strings by default.
-
-**Q: Data disappears on refresh**
-> Data is saved to `localStorage` using `JSON.stringify`. On load, `JSON.parse` restores it. Make sure you're not in an Incognito/Private window (some browsers block localStorage there).
-
-**Q: Chart shows wrong values after adding expenses**
-> The old chart instance is destroyed with `chartInstance.destroy()` before a new one is created. This prevents the "double chart" bug.
-
-**Q: Currency API not working**
-> The app uses `https://api.frankfurter.app` which requires no API key. If it's unreachable, hardcoded fallback rates are used automatically.
-
----
-
-## 📬 Submission
-
-- **Deadline:** Friday 11:59 PM
-- **Step 1:** Push this repo to GitHub (include `Prompts.md`)
-- **Step 2:** Record a 2-minute demo video (show the math working!)
-- **Step 3:** Submit via [Google Form](https://forms.gle/4KbL2wWM36SzDPaT6)
-
----
-
-## 👨‍💻 Author
-
-**Your Name**
-Prodesk IT Internship — Week 2
-[GitHub](https://github.com/your-username) · [LinkedIn](https://linkedin.com/in/your-profile)
-
----
-
-*Built with 💙 using vanilla web technologies — because understanding the foundation makes everything else easier.*
