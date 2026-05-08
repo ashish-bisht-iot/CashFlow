@@ -192,57 +192,93 @@ function escHtml(s) {
 }
 
 // ── CHART ──────────────────────────────────────────────────────────────
+
+// Distinct colour palette for individual expense slices
+const SLICE_COLORS_LIGHT = [
+  '#f05a7e', '#f07d2b', '#f0c92b', '#7ec94e',
+  '#2bcff0', '#2b8ef0', '#7c6af7', '#c76af7',
+  '#f06ab0', '#4ecfb0'
+];
+const SLICE_COLORS_DARK = [
+  '#ff6b8a', '#ff9a4d', '#ffd84d', '#96e868',
+  '#4de8ff', '#4daeff', '#9d8fff', '#d88fff',
+  '#ff85c8', '#68e8cc'
+];
+
 function renderChart(totalExp, balance) {
   const ctx       = document.getElementById('pieChart').getContext('2d');
-  const hasSalary = state.salaryINR > 0;
   const isDark    = state.darkMode;
+  const hasSalary = state.salaryINR > 0;
+  const hasExp    = state.expenses.length > 0;
 
-  // Colours adapt to theme
-  const balColor  = isDark ? '#2de8a8' : '#12c98a';
-  const expColor  = isDark ? '#ff6b8a' : '#f05a7e';
   const textColor = isDark ? '#ddeaf8' : '#182a46';
   const borderCol = isDark ? '#1c2432' : '#ffffff';
+  const balColor  = isDark ? '#2de8a8' : '#12c98a';
+  const palette   = isDark ? SLICE_COLORS_DARK : SLICE_COLORS_LIGHT;
 
   if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+
+  // Build per-expense slices + remaining balance slice
+  let labels, dataValues, bgColors;
+
+  if (!hasSalary && !hasExp) {
+    // Nothing entered yet — show empty placeholder
+    labels    = ['No data'];
+    dataValues = [1];
+    bgColors  = [isDark ? '#2b3a52' : '#c4d9f5'];
+  } else {
+    // One slice per individual expense
+    labels    = state.expenses.map(e => e.name);
+    dataValues = state.expenses.map(e => e.amountINR);
+    bgColors  = state.expenses.map((_, i) => palette[i % palette.length]);
+
+    // Add remaining balance slice at the end (green)
+    const rem = Math.max(balance, 0);
+    labels.push('Remaining Balance');
+    dataValues.push(rem);
+    bgColors.push(balColor);
+  }
 
   chartInstance = new Chart(ctx, {
     type: 'doughnut',
     data: {
-      labels: ['Remaining Balance', 'Total Expenses'],
+      labels,
       datasets: [{
-        data:            hasSalary ? [Math.max(balance, 0), totalExp] : [1, 0],
-        backgroundColor: [balColor, expColor],
+        data:            dataValues,
+        backgroundColor: bgColors,
         borderColor:     borderCol,
-        borderWidth:     4,
-        hoverOffset:     8
+        borderWidth:     3,
+        hoverOffset:     10
       }]
     },
     options: {
-      cutout: '66%',
+      cutout: '60%',
       plugins: {
         legend: {
           position: 'bottom',
           labels: {
             color:        textColor,
-            font:         { family: 'Syne', size: 12, weight: '700' },
-            padding:      18,
-            boxWidth:     12,
-            boxHeight:    12,
-            borderRadius: 4
+            font:         { family: 'Syne', size: 11, weight: '700' },
+            padding:      14,
+            boxWidth:     11,
+            boxHeight:    11,
+            borderRadius: 3
           }
         },
         tooltip: {
           callbacks: {
             label: (ctx) => {
-              const val = hasSalary
-                ? (ctx.dataIndex === 0 ? Math.max(balance, 0) : totalExp)
-                : 0;
-              return `  ${ctx.label}: ${fmt(val)}`;
+              // Show converted amount + % of salary
+              const inrVal = dataValues[ctx.dataIndex];
+              const pct    = state.salaryINR > 0
+                ? ((inrVal / state.salaryINR) * 100).toFixed(1)
+                : '—';
+              return `  ${ctx.label}: ${fmt(inrVal)}  (${pct}%)`;
             }
           }
         }
       },
-      animation: { animateRotate: true, duration: 550 }
+      animation: { animateRotate: true, duration: 600 }
     }
   });
 }
