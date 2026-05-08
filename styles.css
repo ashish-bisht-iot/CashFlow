@@ -524,7 +524,7 @@ header {
 ═══════════════════════════════════════════════════════ */
 .chart-container {
   position: relative;
-  height: 240px;
+  height: 320px;
   display: flex;
   justify-content: center;
   margin-top: 8px;
