@@ -1,19 +1,8 @@
 # 🤖 Prompts.md
 
-This file documents the exact AI prompts used during the development of the Prodesk IT Digital Agency Landing Page project.
+This file documents the exact AI prompts used during the development of the CashFlow — Salary & Expense Tracker project.
 
-## 📌 Prompt 1: Page Styling (CSS)
+## 📌 Prompt 1: README File
 Prompt:
-create modern UI styling for my landing page using CSS (Flexbox/Grid)
-
-## 📌 Prompt 2: Dark Mode Toggle
-Prompt:
-how to implement a dark mode toggle using JavaScript by switching a class or data attribute
-
-## 📌 Prompt 3: README File
-Prompt:
-create a professional README.md file for my project.
-
-
-
+make a readme.md file
 
