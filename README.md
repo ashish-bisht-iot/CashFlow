@@ -41,6 +41,7 @@ cashflow/
 ├── styles.css       # All CSS — themes, layout, animations, hover effects
 ├── script.js        # All JavaScript — state, DOM, localStorage, API, chart, PDF
 └── README.md        # This file
+└── Screenshots      # Cross-platform view and dark & light mode view
 ```
 
 ---
