@@ -2,8 +2,6 @@
 
 A fully functional, beautifully designed **Salary & Expense Tracker** built with **Vanilla JavaScript**, **HTML5**, and **CSS3** — no frameworks, no React, just raw web fundamentals.
 
-> Built as part of the **Prodesk IT Internship — Week 2 Mission**: *"Cash-Flow"*
-
 ---
 
 ## 🚀 Live Features
@@ -39,13 +37,11 @@ A fully functional, beautifully designed **Salary & Expense Tracker** built with
 ```
 cashflow/
 │
-├── index.html       # HTML structure — markup only, no inline styles or scripts
+├── index.html       # HTML structure — single div.app wrapper, no inline styles or scripts
 ├── styles.css       # All CSS — themes, layout, animations, hover effects
 ├── script.js        # All JavaScript — state, DOM, localStorage, API, chart, PDF
 └── README.md        # This file
 ```
-
----
 
 ## 🛠️ Tech Stack
 
@@ -91,18 +87,21 @@ cd cashflow-tracker
 
 ---
 
-## 🪲 Common Issues & Fixes
+## 📸 Screenshots
 
-**Q: Math gives wrong results (e.g. 10 + 10 = 1010)**
-> All input values are wrapped with `Number()` before arithmetic. HTML inputs return strings by default.
+### 🖥️ Desktop View — Dark Mode
 
-**Q: Data disappears on refresh**
-> Data is saved to `localStorage` using `JSON.stringify`. On load, `JSON.parse` restores it. Make sure you're not in an Incognito/Private window (some browsers block localStorage there).
+![Desktop Dark Mode](Screenshots/Dark-mode.png)
 
-**Q: Chart shows wrong values after adding expenses**
-> The old chart instance is destroyed with `chartInstance.destroy()` before a new one is created. This prevents the "double chart" bug.
+### ☀️ Desktop View — Light Mode
 
-**Q: Currency API not working**
-> The app uses `https://api.frankfurter.app` which requires no API key. If it's unreachable, hardcoded fallback rates are used automatically.
+![Desktop Light Mode](Screenshots/Desktop-View.png)
 
----
+### 📱 Mobile — iPhone 14 Pro Max
+
+![iPhone View](Screenshots/Iphone-View.png)
+
+### 🤖 Mobile — Android (Samsung Galaxy A51)
+
+![Android View](Screenshots/Android-View.png)
+
