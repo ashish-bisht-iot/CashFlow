@@ -2,6 +2,8 @@
 
 A fully functional, beautifully designed **Salary & Expense Tracker** built with **Vanilla JavaScript**, **HTML5**, and **CSS3** — no frameworks, no React, just raw web fundamentals.
 
+> Built as part of the **Prodesk IT Internship — Week 2 Mission**: *"Cash-Flow"*
+
 ---
 
 ## 🚀 Live Features
@@ -41,7 +43,6 @@ cashflow/
 ├── styles.css       # All CSS — themes, layout, animations, hover effects
 ├── script.js        # All JavaScript — state, DOM, localStorage, API, chart, PDF
 └── README.md        # This file
-└── Screenshots      # Cross-platform view and dark & light mode view
 ```
 
 ---
@@ -88,3 +89,20 @@ cd cashflow-tracker
 - **Chart.js** — via CDN, destroyed and re-created on each update
 - **jsPDF** — client-side PDF generation with custom layout
 
+---
+
+## 🪲 Common Issues & Fixes
+
+**Q: Math gives wrong results (e.g. 10 + 10 = 1010)**
+> All input values are wrapped with `Number()` before arithmetic. HTML inputs return strings by default.
+
+**Q: Data disappears on refresh**
+> Data is saved to `localStorage` using `JSON.stringify`. On load, `JSON.parse` restores it. Make sure you're not in an Incognito/Private window (some browsers block localStorage there).
+
+**Q: Chart shows wrong values after adding expenses**
+> The old chart instance is destroyed with `chartInstance.destroy()` before a new one is created. This prevents the "double chart" bug.
+
+**Q: Currency API not working**
+> The app uses `https://api.frankfurter.app` which requires no API key. If it's unreachable, hardcoded fallback rates are used automatically.
+
+---
