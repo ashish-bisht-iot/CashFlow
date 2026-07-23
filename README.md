@@ -57,24 +57,6 @@ cashflow/
 
 ---
 
-## ⚙️ How to Run
-
-No build tools, no npm, no server required.
-
-1. **Clone or download** this repository
-2. Make sure all three files (`index.html`, `styles.css`, `script.js`) are in the **same folder**
-3. Open `index.html` in any modern browser
-
-```bash
-git clone https://github.com/your-username/cashflow-tracker.git
-cd cashflow-tracker
-# Just open index.html in your browser
-```
-
-> ⚠️ The currency converter fetches live rates from an external API. An internet connection is required for live rates; fallback approximate values are used if the API is unreachable.
-
----
-
 ## 🧠 Key JavaScript Concepts Used
 
 - **DOM Manipulation** — `getElementById`, `innerHTML`, `classList`, `addEventListener`
